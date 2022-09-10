@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ApiServiceService } from '../services/api-service.service';
 
 @Component({
   selector: 'app-service',
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class ServiceComponent implements OnInit {
 
   userList:any;
-  constructor(private httpClient: HttpClient) {
+  constructor(private Myvar: ApiServiceService) {
     this.userList=[];
    }
 
@@ -19,9 +20,11 @@ export class ServiceComponent implements OnInit {
   }
 
   getAllUsers(){
-      this.httpClient.get("https://jsonplaceholder.typicode.com/users").subscribe((result:any) => {
-        this.userList=result;
-      })
+    this.Myvar.getData().subscribe((result) => {
+      this.userList= result;
+    })
   }
 
-}
+  }
+
+
